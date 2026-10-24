@@ -166,3 +166,39 @@ if __name__ == "__main__":
         mostrar(aplicar_solucion(tablero_5, x5))
     except ValueError as e:
         print(e)
+        
+        
+    # Otros ejemplos (Tabla 1 de nuestro informe)
+    otros = {
+        "3x3 con todas las luces prendidas": [[1, 1, 1],
+                                              [1, 1, 1],
+                                              [1, 1, 1]],
+        "4x4 con esquinas en forma de L": [[1, 1, 0, 0],
+                                           [1, 0, 0, 0],
+                                           [0, 0, 0, 1],
+                                           [0, 0, 1, 1]],
+        "4x4 con solo a11 prendida": [[1, 0, 0, 0],
+                                      [0, 0, 0, 0],
+                                      [0, 0, 0, 0],
+                                      [0, 0, 0, 0]],
+        "5x5 de la consigna con a12 prendida": [[0, 1, 1, 1, 1],
+                                                [0, 1, 1, 1, 0],
+                                                [1, 0, 0, 1, 1],
+                                                [1, 1, 0, 0, 1],
+                                                [0, 1, 1, 1, 0]],
+    }
+    for nombre, t in otros.items():
+        n = len(t)
+        print(f"Tablero {nombre}:")
+        mostrar(t)
+        try:
+            xt = resolver_lights_out(t)
+            print("Luces a presionar:",
+                  [f"a{k // n + 1}{k % n + 1}" for k, v in enumerate(xt) if v])
+            print("Tablero tras aplicar la solución:")
+            mostrar(aplicar_solucion(t, xt))
+        except ValueError as e:
+            print(e)
+        print()
+        
+        
